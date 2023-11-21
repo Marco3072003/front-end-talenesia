@@ -7,7 +7,7 @@ import { useUserLibrariesQuery, useUserBadgesQuery, useUsersBadgesQuery } from "
 import  Card  from '../../components/atoms/Card'
 import Container from "../../components/atoms/Container"
 import UserStats from "../../components/organisms/UserStats"
-import TalenesiaBanner from "../../components/molecules/talenesiaBanner"
+import TalenesiaBanner from "../../components/molecules/TalenesiaBanner"
 import BannerDashboardContent from "../../components/Contents/BannerDashboardContent"
 import logo from "../../assets/img/logo.png"
 import { setParticipants } from "../../features/user/participants-class"

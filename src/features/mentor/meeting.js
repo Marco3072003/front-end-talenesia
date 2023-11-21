@@ -6,7 +6,7 @@ export const meetingSlice = createSlice({
                                                         isSubmit: false,
                                                         isLink: false,
                                                         isOpenUpdate: false,
-                                                        link: null
+                                                        link: null,
                                     },
                                     reducers: {
                                         addLink: (state, action)=>{

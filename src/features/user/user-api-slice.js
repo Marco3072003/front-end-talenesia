@@ -36,12 +36,63 @@ export const userApiSlice = apiSlice.injectEndpoints({
             query: ({subCourseId, body}) => ({
                 url: `/subcourses/${subCourseId}`, 
                 method:'PATCH',
-                body: body
+                body: {...body}
             })  
+        }), 
+        getAllUserBadges: builder.query({
+            query: () => {
+                return '/userbadges'
+            }
+        }),
+        getAllBadges: builder.query({
+            query: () =>{
+                return '/badges'
+            }
+        }),
+        patchBadgesById: builder.mutation({
+            query: ({userBadgeId , body}) => ({
+                url: `/userbadges/${userBadgeId.userBadgesId}`,
+                method:'PATCH',
+                body: {...body}
+            })
+        }),
+        postBadgesById: builder.mutation({
+            query: ({userBadgeId , body}) => ({
+                url: `/learningtracks/${userBadgeId}`,
+                method:'POST',
+                body: {...body}
+
+            })
+        }),
+        postUserProgress: builder.mutation({
+            query: ({body}) => ({
+                url: `/userprogress`,
+                method: 'POST',
+                body: {...body}
+            })
+        }), 
+        getUserProgress: builder.query({
+            query: ({batchId, subCourseId})=> {
+                return `/userprogress/filter?batchId=${batchId}&subCourseId=${subCourseId}`
+                // localhost:5000/userprogress/filter?batchId=UjSqxfyed7NP&subCourseId=nxpiqqindt_I
+                
+            
+            }
+        }),
+        deleteUserProgress: builder.mutation({
+            query: ({userId, batchId, subCourseId}) => ({
+                url: `/userprogress/filter?userId=${userId}&batchId=${batchId}&subCourseId=${subCourseId}`,
+                method: 'DELETE',
+            })
         })
+        
 
 
     })
 })
 
-export const { useUpdateSubcourseMaterialMutation,  useUserLibrariesQuery, useUsersBadgesQuery, useUserBadgesQuery, useGetBatchQuery,useGetMyCourseQuery, useGetDetailSubcourseQuery } = userApiSlice 
+export const { useUpdateSubcourseMaterialMutation,  useUserLibrariesQuery, 
+                useUsersBadgesQuery, useUserBadgesQuery, useGetAllUserBadgesQuery,
+                useGetBatchQuery,useGetMyCourseQuery, useGetDetailSubcourseQuery,
+                useGetAllBadgesQuery, usePostBadgesByIdMutation, usePatchBadgesByIdMutation,
+                usePostUserProgressMutation, useGetUserProgressQuery, useDeleteUserProgressMutation } = userApiSlice 

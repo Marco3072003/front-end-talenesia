@@ -32,18 +32,15 @@ import { setCredentials, logout } from '../../features/auth/auth-slice';
 }) */
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://fair-tan-woodpecker-boot.cyclic.app', 
+    baseUrl: 'https://rose-crazy-centipede.cyclic.app', 
     prepareHeaders: (headers, { getState }) =>{
         const token = getState().auth.token;
-        console.log(token)
         if(token){
             headers.set('Authorization', `Bearer ${token}`);
             
         }
         /* headers.set('Content-Type', 'application/json'),
         headers.set('Origin', 'http://localhost:5173/login') */
-        
-        console.log(headers)
         return headers;
     }
 })

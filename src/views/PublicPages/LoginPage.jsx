@@ -36,17 +36,17 @@ function Login () {
   const [previousPath, setPreviousPath] = useState('');
   const location = useLocation();
 
-  /* useEffect(()=>{
+  useEffect(()=>{
     dispatch(setCredentialsFromLocal())
     if(isLogin){
       navigate('/dashboard');
     }
-  }) */
+  })
   
   async function getToken(email, password){
     try{
         const userData = await login({ email, password}).unwrap()
-        console.log(userData)
+        
         /* if(userData.data === undefined){
           throw new Error(userData.error.data.error)
         }

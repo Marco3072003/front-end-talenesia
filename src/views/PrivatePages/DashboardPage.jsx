@@ -31,6 +31,8 @@ export default function DashboardPage(){
     if(token !== null){
         dispatch(setCredentials({username, token, role}))
     }
+
+    
     
     const {data: userLibraries = [], isFetching, isSuccess} = useUserLibrariesQuery()
     function sumPropertyValues(arr, propertyName) {
@@ -97,12 +99,11 @@ export default function DashboardPage(){
    
 
     return(
-
             <Container>
                     <TalenesiaBanner logo={logo}   >
                         <BannerDashboardContent /* participants={participants} */ />
                     </TalenesiaBanner>
-                    <UserStats points={finish && totalPoints} peringkat={isFinish && peringkat}/>
+            { role === 'PELAJAR' && <UserStats points={finish && totalPoints} peringkat={isFinish && peringkat}/>}        
             </Container>
             
      

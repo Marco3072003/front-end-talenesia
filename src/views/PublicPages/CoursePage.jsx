@@ -5,10 +5,9 @@ import Button from "../../components/atoms/Button";
 import Card from "../../components/atoms/Card";
 import Container from "../../components/atoms/Container";
 import { useState } from "react";
-import { Navigate} from "react-router-dom";
+
 
 export default function CoursePage(){
-
     const [isShowId, setIsShowId] = useState('');
     const showCardHeight = "h-[58%]";
     function handleShow(event){

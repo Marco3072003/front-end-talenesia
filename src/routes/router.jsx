@@ -9,13 +9,14 @@ import MyCoursePage from "../views/PrivatePages/MyCoursePage";
 import ParticipantsPage from "../views/PrivatePages/ParticipantsPage";
 import LeaderboardPage from "../views/PrivatePages/LeaderboardPage";
 import MeetingPage from "../views/PrivatePages/MentorPage/MeetingPage";
+import RequireAuth from "../views/RequireAuth";
 
 
 
 
 
 
-const router = createBrowserRouter([
+/* const router = createBrowserRouter([
             {   
               
                     path:'/',
@@ -63,7 +64,63 @@ const router = createBrowserRouter([
                 
             },
 
-])
+]) */
+
+const router = createBrowserRouter([
+    {   
+      
+            path:'/',
+            element: <Root />,
+            children: [
+                {
+                    path: '/',
+                    element: <LandingPage />,
+                },
+                {
+                    path: '/login',
+                    element: <LoginPage />,
+                    
+                },
+                {
+                    path: '/course',
+                    element: <CoursePage/>
+                },
+                {
+                    path: '/teacher',
+                    element: <TeacherPage/>
+                },
+                {
+                    element: <RequireAuth />,
+                    children: [
+                        {
+                            path: '/dashboard',
+                            element: <DashboardPage />
+                        },
+                        {
+                            path: '/mycourse',
+                            element: <MyCoursePage/>
+                        },
+                        {
+                            path: '/participants',
+                            element: <ParticipantsPage />
+                        },
+                        {
+                            path: '/leaderboard',
+                            element: <LeaderboardPage />
+                        },
+                        {
+                            path:'/meeting/:courseId/:subCourseId',
+                            element: <MeetingPage/>
+                        }
+                    ]
+                }
+            ]
+        
+        
+    },
+
+]) 
+
 
 
 export {router};

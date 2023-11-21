@@ -67,7 +67,6 @@ export default function MyCoursePage(){
                                             {
                                                 subCourse.map((subCourse,index)=>{
                                                     const judulSubcourse = subCourse.subCourseName
-                                                    console.log(subCourse)
                                                     const courseId = subCourse.courseId
                                                     const tipeSubcourse = subCourse.subCourseType
                                                     const link = subCourse.subCourseMaterial[0].link

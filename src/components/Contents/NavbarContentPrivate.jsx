@@ -4,7 +4,7 @@ export default function NavbarContentPrivate({pageActive}){
     const active = 'text-emerald-500'
     
     return(
-            <>
+            <div className="max-[1030px]:hidden flex gap-10">
                 <Link to="/dashboard" className={` text-neutral-400 hover:text-blue-200 font-semibold relative
                                         ${pageActive ==='dashboard' && active}`}>           
                 Dashboard
@@ -26,6 +26,6 @@ export default function NavbarContentPrivate({pageActive}){
                 Leaderboard
                 { pageActive === 'leaderboard' && <div className="w-full h-[5px] bg-emerald-500 absolute bottom-[-25px]"></div>}
                 </Link>
-            </>
+            </div>
     )
 }

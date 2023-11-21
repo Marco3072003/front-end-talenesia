@@ -9,12 +9,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 body: {...credentials}
             })
         }),
-        videos: builder.query({
-             query: ()=>{
-                return '/video'
-            }
-        })
+        
     })
 })
 
-export const { useLoginMutation, useVideosQuery } = authApiSlice 
+export const { useLoginMutation } = authApiSlice 

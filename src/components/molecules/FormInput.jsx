@@ -1,9 +1,9 @@
 import Input from '../atoms/Input';
 import PropTypes from 'prop-types';
 
-function FormInput({ label, type, placeholder, value, name, onChange, classNameInput }) {
+function FormInput({ className, label, type, placeholder, value, name, onChange, classNameInput }) {
   return (
-    <div className="mb-4 w-full lg:w-3/4">
+    <div className={`mb-4 w-full lg:w-3/4 ${className}`}>
       <label className="block text-sky-900 text-[20px]">{label}</label>
       <Input type={type} placeholder={placeholder} name={name} value={value} onChange={onChange} className={classNameInput}/>
     </div>

@@ -3,11 +3,12 @@ import LoginPage from "../views/PublicPages/LoginPage"
 import LandingPage from "../views/PublicPages/LandingPage";
 import CoursePage from "../views/PublicPages/CoursePage";
 import TeacherPage from "../views/PublicPages/TeacherPage";
-import PublicRoot from "../views/PublicPages/PublicRoot";
+import Root from "../views/Root";
 import DashboardPage from "../views/PrivatePages/DashboardPage";
 import MyCoursePage from "../views/PrivatePages/MyCoursePage";
 import ParticipantsPage from "../views/PrivatePages/ParticipantsPage";
 import LeaderboardPage from "../views/PrivatePages/LeaderboardPage";
+import MeetingPage from "../views/PrivatePages/MentorPage/MeetingPage";
 
 
 
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
             {   
               
                     path:'/',
-                    element: <PublicRoot />,
+                    element: <Root />,
                     children: [
                         {
                             path: '/',
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
                         {
                             path: '/leaderboard',
                             element: <LeaderboardPage />
+                        },
+                        {
+                            path:'/meeting/:courseId/:subCourseId',
+                            element: <MeetingPage/>
                         }
                     ]
                 

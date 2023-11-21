@@ -32,14 +32,19 @@ import { setCredentials, logout } from '../../features/auth/auth-slice';
 }) */
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://back-end-final-project-gg30.vercel.app/', 
+    baseUrl: 'https://fair-tan-woodpecker-boot.cyclic.app', 
     prepareHeaders: (headers, { getState }) =>{
-        const token = getState().auth.token
-        if(token) {
-         headers.set('Authorization', `Bearer ${token}`)
+        const token = getState().auth.token;
+        console.log(token)
+        if(token){
+            headers.set('Authorization', `Bearer ${token}`);
+            
         }
-        // headers.set('Content-Type', 'application/json')
-        return headers
+        /* headers.set('Content-Type', 'application/json'),
+        headers.set('Origin', 'http://localhost:5173/login') */
+        
+        console.log(headers)
+        return headers;
     }
 })
 
@@ -48,8 +53,14 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     const user = api.getState().auth.username
     
     if(user === '' && result?.data){
+        
+        const token = result.data.data.token.split(' ');
+        /* console.log(result.data.data.user)
+        console.log(token[1]) */
+
         //store token to credentialstate
-        api.dispatch(setCredentials({username:result.data.username, token: result.data.accessToken}))
+       
+        api.dispatch(setCredentials({ username:result.data.data.user.userFullName, token: token[1], role: result.data.data.user.userRole }))
     }
     
     return result;

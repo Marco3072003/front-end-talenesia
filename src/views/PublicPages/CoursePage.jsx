@@ -18,8 +18,7 @@ export default function CoursePage(){
     }
 
     return(
-        <>
-            
+        <>    
             <Container>
                 <h1 className="text-sky-900 text-[28px] mb-8 font-medium font-['Outfit']">KURSUS YANG TERSEDIA</h1>
                     <Card id='1' className={`w-full h-[38%] mb-10 py-8 px-16 ${isShowId === '1'  && showCardHeight}` }>
@@ -84,7 +83,6 @@ export default function CoursePage(){
                         </div>
                     </Card>
             </Container>
-
         </>
     )
 }

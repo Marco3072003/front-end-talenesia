@@ -19,9 +19,10 @@ import LoginForm from '../../components/organisms/LoginForm';
 import loginImage from '../../assets/img/login.png';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {  setCredentialsFromLocal } from '../../features/auth/auth-slice';
-import { useLoginMutation, useVideosQuery } from '../../features/auth/auth-api-slice';
+import { useLoginMutation } from '../../features/auth/auth-api-slice';
+import { useLocation } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
 
@@ -31,20 +32,25 @@ function Login () {
   const [login, {isLoading}] = useLoginMutation()
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const isLogin = useSelector((state)=> state.auth.isLogin)
+  const [previousPath, setPreviousPath] = useState('');
+  const location = useLocation();
 
-
-  useEffect(()=>{
+  /* useEffect(()=>{
     dispatch(setCredentialsFromLocal())
-
-  })
+    if(isLogin){
+      navigate('/dashboard');
+    }
+  }) */
   
   async function getToken(email, password){
     try{
-        const userData = await login({username: email, password})
-        if(userData.data === undefined){
+        const userData = await login({ email, password}).unwrap()
+        console.log(userData)
+        /* if(userData.data === undefined){
           throw new Error(userData.error.data.error)
         }
-        
+         */
         navigate('/dashboard')
         
 

@@ -50,7 +50,6 @@ export default function LoginForm({getToken}) {
       event.preventDefault();
       const token = await getToken(email, password)
       token && navigate('/dashboard')
-      
   };
 
   return (

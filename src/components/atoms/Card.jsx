@@ -1,7 +1,7 @@
 export default function Card({className, children}){
     return(
                 <div className={` ${className} overflow-hidden  
-                    shadow-[0_15px_20px_-10px_rgba(0,0,0,0.3),0_-15px_20px_-20px_rgba(0,0,0,0.3)] 
+                    shadow-[2px_3px_5px_0px_rgba(128,128,128,0.2),2px_-3px_5px_0px_rgba(128,128,128,0.2),-3px_-2px_5px_0px_rgba(128,128,128,0.2),-3px_2px_5px_0px_rgba(128,128,128,0.2)] 
                     rounded-lg `}>
                                     
                             {children}

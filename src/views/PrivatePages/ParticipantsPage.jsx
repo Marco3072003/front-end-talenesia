@@ -81,7 +81,7 @@ export default function ParticipantsPage(){
                         <h1 className="text-4xl font-semibold mb-8">Peserta</h1>
                         <div className="flex flex-col">
                             {
-                                participants.map((participant)=> (<UserList username={participant}/>))
+                                participants.map((participant)=> (<UserList userPicture={userPicture} username={participant}/>))
                             }
                         </div>
                     </Card>

@@ -20,6 +20,12 @@ export default function MyCoursePage(){
     const dispatch = useDispatch()
     const isLogin = useSelector((state) => state.auth.isLogin)
     const batchId = localStorage.getItem('batch_id')
+    const username = localStorage.getItem('my-user-when-entry')
+    const token = localStorage.getItem('my-key-to_entry')
+    const role = localStorage.getItem('my-role-key');
+    if(token !== null){
+        dispatch(setCredentials({username, token, role}))
+    }
     
     
     const learningTrackId = localStorage.getItem('learning_track_id')
@@ -53,13 +59,7 @@ export default function MyCoursePage(){
     
     
 
-    const username = localStorage.getItem('my-user-when-entry')
-
-    const token = localStorage.getItem('my-key-to_entry')
-    const role = localStorage.getItem('my-role-key');
-    if(token !== null){
-        dispatch(setCredentials({username, token, role}))
-    }
+    
     
 
     
@@ -67,7 +67,8 @@ export default function MyCoursePage(){
     return(
             <Container>
                 <TalensiaBanner logo={logo} batch='1' learningTrack='Admin Perkantoran'>
-                    <BannerAbsensiContent absensi={persentaseAbsensi} />
+                    
+                    {role==='PELAJAR' && <BannerAbsensiContent absensi={persentaseAbsensi} />}
                 </TalensiaBanner>
                 <Card className={cardStyle} >
                         {

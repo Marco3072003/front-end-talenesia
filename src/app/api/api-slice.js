@@ -32,7 +32,7 @@ import { setCredentials, logout } from '../../features/auth/auth-slice';
 }) */
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'https://rose-crazy-centipede.cyclic.app', 
+    baseUrl: 'https://fair-tan-woodpecker-boot.cyclic.app', 
     prepareHeaders: (headers, { getState }) =>{
         const token = getState().auth.token;
         if(token){

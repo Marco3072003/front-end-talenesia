@@ -44,19 +44,19 @@ Ensure that you have the following tools installed:
 - Run App
 
 ## Usage
-###User Authentication
+### User Authentication
 
 - Use the provided login page to authenticate as either a mentor or a student.
   
-###Mentor Features
+### Mentor Features
 - Award points to students through the dedicated interface.
 - Record student attendance (absensi) during live sessions.
   
-###Student Features
+### Student Features
 - View accumulated points on the student dashboard.
 - Sort and view a list of students in ascending order based on points.
   
-###Subcourse Structure
+### Subcourse Structure
 - Explore subcourses containing live sessions and modules for a comprehensive learning experience.
 
 ```bash

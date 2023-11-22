@@ -6,7 +6,9 @@ export default function SubCourseUserList({userImage, username, badgeId,  handle
                                             setIsOpenAttend}){
         // console.log(attendData)
         /* const finalDataBadgesWithProgress = useSelector((state)=> state.detailUser.userWithBadgesProgress) 
+
         console.log(finalDataBadgesWithProgress) */
+        // console.log(userId)
     if(!attendData){
             setIsOpenAttend(true)
 
@@ -34,8 +36,8 @@ export default function SubCourseUserList({userImage, username, badgeId,  handle
                             <select value={badgeId !== null ? badgeId : ''} onChange={() => handleChangeBadge(event,userId)}
                             className="mr-5 px-5 py-2 font-semibold text-lg" name="absensi" id="absensi">
                                 <option value="BDQWH9VB3n9o">MVP</option>
-                                <option value="m1ba8UfdRunk?">Funny</option>
-                                <option value="zR6gNKs8xHZd">Stop Asking</option>  
+                                <option value="zR6gNKs8xHZd">Funny</option>
+                                <option value="m1ba8UfdRunk">Stop Asking</option>  
                                 <option value=''>Beri Badge</option> 
                             </select>
                            

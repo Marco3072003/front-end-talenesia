@@ -44,7 +44,6 @@ export default function MyCoursePage(){
      setCourses([...Courses])
      const progressUser = userProgress.data.length
      const coursesTotal = Courses.length
-     console.log(progressUser)
      const absensi = progressUser / coursesTotal * 100
 
      setPersentaseAbsensi(absensi)

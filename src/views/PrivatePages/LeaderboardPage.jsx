@@ -25,9 +25,8 @@ export default function LeaderboardPage(){
     }) */
     const username = localStorage.getItem('my-user-when-entry')
     const token = localStorage.getItem('my-key-to_entry')
-    const role = localStorage.getItem('my-role-key');
     if(token !== null){
-        dispatch(setCredentials({username, token, role}))
+        dispatch(setCredentials({username, token}))
     }
     
     function sumPropertyValues(arr, propertyName) {

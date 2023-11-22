@@ -51,9 +51,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
         }),
         patchBadgesById: builder.mutation({
             query: ({userBadgeId , body}) => ({
-                url: `/userbadges/${userBadgeId.userBadgesId}`,
+                url: `/userbadges/${userBadgeId}`,
                 method:'PATCH',
                 body: {...body}
+               
             })
         }),
         postBadgesById: builder.mutation({

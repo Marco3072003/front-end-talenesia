@@ -17,13 +17,6 @@ export default function DashboardPage(){
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    /*
-    
-    const isLogin = useSelector((state) => state.auth.isLogin) */
-    /* if(isLogin !== true){
-        console.log(isLogin)
-        
-    } */
     
     const username = localStorage.getItem('my-user-when-entry')
     const token = localStorage.getItem('my-key-to_entry')
@@ -48,8 +41,8 @@ export default function DashboardPage(){
     const [peringkat, setPeringkat] = useState('')
 
     const batchId = localStorage.getItem('batch_id');
+    
     const {data = [], isLoading, isSuccess: isFinish} = useUsersBadgesQuery({batchId});
-
     const {data: userStats=[], isFetching: onLoad, isSuccess: finish} = useUserBadgesQuery();
     const arrayUserStats = userStats.data
     const participants = data.data
@@ -66,8 +59,6 @@ export default function DashboardPage(){
         } 
         if(isFinish){
             participants.sort((a,b)=> sumPropertyValues(a.listBadges,'badgeValue') - sumPropertyValues(a.listBadges,'badgeValue'))
-      
-            console.log(participants)
             
             const peringkat = participants.findIndex((participant) => participant.detailUser.userFullName === username) + 1
                 setPeringkat(peringkat)
@@ -88,11 +79,7 @@ export default function DashboardPage(){
             dispatch(setDetailUser({batchId, batchName, learningTrackName, learningTrackId}))
             dispatch(setParticipants({participants, mentors}))      
         }
-        // dispatch(setCredentialsFromLocal())
-
-        /* if(isLogin !== true){
-            navigate('/login')
-        }         */
+        
     },[userLibraries,  dispatch])
 
    
@@ -101,7 +88,7 @@ export default function DashboardPage(){
     return(
             <Container>
                     <TalenesiaBanner logo={logo}   >
-                        <BannerDashboardContent /* participants={participants} */ />
+                        <BannerDashboardContent  />
                     </TalenesiaBanner>
             { role === 'PELAJAR' && <UserStats points={finish && totalPoints} peringkat={isFinish && peringkat}/>}        
             </Container>

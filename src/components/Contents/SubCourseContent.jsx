@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 
 export default function SubCourseContent({courseId, imgUrl, judulSubcourse, tipeSubcourse, link, opened, due, subCourseId}){
     const role = useSelector((state)=> state.auth.role)
-    console.log(role)
     return      role == 'MENTOR' && tipeSubcourse == 'LIVESESSION' ?
                     <Link to={`/meeting/${courseId}/${subCourseId}`}>
                     <div className="border rounded-[10px] border-stone-300 py-5 px-10 flex justify-between items-center">

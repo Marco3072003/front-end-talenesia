@@ -9,6 +9,7 @@ export const detailUser = createSlice({
                     learningTrackName: '',
                     point: '',
                     peringkat: '',
+                    userWithBadgesProgress: []
                     
     },
     reducers:{
@@ -20,10 +21,14 @@ export const detailUser = createSlice({
             state.learningTrackName = learningTrackName
             localStorage.setItem('batch_id', batchId)
             localStorage.setItem('learning_track_id', learningTrackId)
+        },
+        setUserWithBadgesProgress: (state,action)=>{
+            const data = [...action.payload]
+            state.userWithBadgesProgress = [...data]
         }
     }
 })
 
-export const {setDetailUser} = detailUser.actions
+export const {setDetailUser, setUserWithBadgesProgress } = detailUser.actions
 
 export default detailUser.reducer;

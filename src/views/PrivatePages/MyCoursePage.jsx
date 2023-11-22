@@ -13,35 +13,45 @@ import meetingImg from '../../assets/img/meeting.png'
 import pageImage from '../../assets/img/page-image.png'
 import pdfImage from '../../assets/img/pdf-image.png'
 import submissionImage from '../../assets/img/submission-image.png'
-import { useGetMyCourseQuery } from "../../features/user/user-api-slice"
+import { useGetMyCourseQuery, useGetUserProgressByBatchQuery } from "../../features/user/user-api-slice"
 
 export default function MyCoursePage(){
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const isLogin = useSelector((state) => state.auth.isLogin)
-    /* useEffect(()=>{
-        if(isLogin !== true){
-            console.log(isLogin)
-            navigate('/login')
-        }
-        
-        dispatch(setCredentialsFromLocal())
-    }) */
+    const batchId = localStorage.getItem('batch_id')
+    
+    
     const learningTrackId = localStorage.getItem('learning_track_id')
 
     const {data: learningTrack=[], isFetching, isSuccess} = useGetMyCourseQuery({learningTrackId})
-
-    const [courses, setCourses] = useState([])
+     const {data: userProgress=[], isFetching: isFetchingProgress, isSuccess: isSuccessProgres} = useGetUserProgressByBatchQuery({batchId})
     
+    const [courses, setCourses] = useState([])
+    const [totalCourses, setTotalCourses] = useState()
+    const [persentaseAbsensi, setPersentaseAbsensi] = useState()
+    const [progressAbsensi, setProgressAbsensi] = useState()
+
     useEffect(()=>{
-    if(isSuccess){
-     const courses = learningTrack.data[0].courseDetail
-     setCourses([...courses])
+    if(isSuccess && isSuccessProgres){
+     const Courses = learningTrack.data[0].courseDetail
+     setCourses([...Courses])
+     const progressUser = userProgress.data.length
+     const coursesTotal = Courses.length
+     console.log(progressUser)
+     const absensi = progressUser / coursesTotal * 100
+
+     setPersentaseAbsensi(absensi)
+
     }  
 
-    },[learningTrack])
+    },[learningTrack, userProgress])
+
+
+   
+
     
-    console.log(courses)
+    
 
     const username = localStorage.getItem('my-user-when-entry')
 
@@ -52,12 +62,12 @@ export default function MyCoursePage(){
     }
     
 
-    const absensi = '70%'
+    
     const cardStyle ='bg-white px-12 py-4 mb-8'
     return(
             <Container>
                 <TalensiaBanner logo={logo} batch='1' learningTrack='Admin Perkantoran'>
-                    <BannerAbsensiContent absensi={absensi} />
+                    <BannerAbsensiContent absensi={persentaseAbsensi} />
                 </TalensiaBanner>
                 <Card className={cardStyle} >
                         {

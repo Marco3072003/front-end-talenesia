@@ -1,8 +1,12 @@
+import { useSelector } from "react-redux"
+
 
 
 export default function SubCourseUserList({userImage, username, badgeId,  handleChangeBadge, userId, handlePresent, handleDeletePresent, attendData, isOpenAttend, 
-    setIsOpenAttend}){
-
+                                            setIsOpenAttend}){
+        // console.log(attendData)
+        /* const finalDataBadgesWithProgress = useSelector((state)=> state.detailUser.userWithBadgesProgress) 
+        console.log(finalDataBadgesWithProgress) */
     if(!attendData){
             setIsOpenAttend(true)
 
@@ -25,7 +29,7 @@ export default function SubCourseUserList({userImage, username, badgeId,  handle
                             :
                             <button type="button" onClick={()=>handleDeletePresent(userId)} className="px-8 py-[18px] bg-green-700 mr-5 text-lg font-bold rounded-lg text-white">Hadir</button>
                             
-                            
+
                         }    
                             <select value={badgeId !== null ? badgeId : ''} onChange={() => handleChangeBadge(event,userId)}
                             className="mr-5 px-5 py-2 font-semibold text-lg" name="absensi" id="absensi">

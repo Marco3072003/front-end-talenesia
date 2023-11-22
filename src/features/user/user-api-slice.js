@@ -84,6 +84,11 @@ export const userApiSlice = apiSlice.injectEndpoints({
                 url: `/userprogress/filter?userId=${userId}&batchId=${batchId}&subCourseId=${subCourseId}`,
                 method: 'DELETE',
             })
+        }),
+        getUserProgressByBatch: builder.query({
+            query: ({batchId})=>{
+                return `/users/userprogress?batchId=${batchId}`
+            }
         })
         
 
@@ -95,4 +100,5 @@ export const { useUpdateSubcourseMaterialMutation,  useUserLibrariesQuery,
                 useUsersBadgesQuery, useUserBadgesQuery, useGetAllUserBadgesQuery,
                 useGetBatchQuery,useGetMyCourseQuery, useGetDetailSubcourseQuery,
                 useGetAllBadgesQuery, usePostBadgesByIdMutation, usePatchBadgesByIdMutation,
-                usePostUserProgressMutation, useGetUserProgressQuery, useDeleteUserProgressMutation } = userApiSlice 
+                usePostUserProgressMutation, useGetUserProgressQuery, useDeleteUserProgressMutation,
+                useGetUserProgressByBatchQuery } = userApiSlice 

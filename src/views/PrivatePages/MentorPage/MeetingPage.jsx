@@ -14,6 +14,7 @@ import { useGetDetailSubcourseQuery, useUpdateSubcourseMaterialMutation,
          useGetAllBadgesQuery, usePostBadgesByIdMutation, usePatchBadgesByIdMutation
          , usePostUserProgressMutation, useDeleteUserProgressMutation
          ,useGetUserProgressQuery } from "../../../features/user/user-api-slice"
+import { setUserWithBadgesProgress } from "../../../features/user/detail-user"
 import SubCourseUserList from "../../../components/organisms/SubCourseUserList"
 import { useParams } from "react-router-dom"
 import userPicture from "../../../assets/img/user-picture.png"
@@ -40,14 +41,9 @@ export default function MeetingPage(){
     const [description, setDescription] = useState('')
     const [openDate, setOpenDate] = useState('')
     const [closeDate, setCloseDate] = useState('')
-    const [participant, setParticipant] = useState([])
-    const [participantBadges , setParticipantBadges] = useState([])
-    const [finalData, setFinalData] = useState([]);
-    const [userBadgesData, setUserBadgesData] = useState([]);
     const [selectBadgeId, setSelectBadgeId] = useState('');
     const [selectUserId ,  setSelectUserId] = useState('')
     const [handleChangeBadgeExecuted, setHandleChangeBadgeExecuted] = useState(false);
-    const [finalDataProgress, setFinalDataProgress] = useState([])
     const [isOpenAttend, setIsOpenAttend] = useState(false)
     const [handleAttendActive, setHandleAttendActive] = useState(false)
 
@@ -62,74 +58,9 @@ export default function MeetingPage(){
     const [patchBadgesById, {isLoadingPatch}] = usePatchBadgesByIdMutation();
     const [postUserProgress, {isLoadingProgress}] = usePostUserProgressMutation();
     const [deleteUserProgress, {isLoadingDelete}] = useDeleteUserProgressMutation();
+    const finalDataBadgesWithProgress = useSelector((state)=> state.detailUser.userWithBadgesProgress) 
+
     
-    
-  
-    useEffect(()=>{
-        if(isDone){
-            setParticipant(()=> [...batch.data[0].participant])
-
-        }
-    }, [batch])
-
-    useEffect(()=>{
-        if(isClear && isDone){
-            const userBadgesData = userBadges.data
-            const arrayParticipant = [...participant]
-            const userWithBadges = arrayParticipant.map((participant)=>{
-                                        const matchingData = userBadgesData.filter((userBadge) => {
-                                                if(userBadge.batchId ===  batchId && userBadge.subCourseId === subCourseId
-                                                    && userBadge.userId === participant.userId){
-                                                        return userBadge
-                                                    }
-                                        } )
-
-                                        if(matchingData.length > 0 ){
-                                            return {...participant, badgesId: matchingData.map(data => data.badgeId) }
-                                        }
-                                    })
-
-                setParticipantBadges([...userWithBadges])  
-                setUserBadgesData([...userBadges.data])
-        }   
-        
-    },[participant])
-
-
-    useEffect(()=>{
-        if(isSuccessBadges && isClear && isDone){
-        const badgeData = allBadges.data
-          const participantWithBadges = [...participantBadges]
-          const finalData = participantWithBadges.map((student)=>{
-                                    const badgeId = student.badgesId[0]
-                                    const matchingData = badgeData.find((data)=> data.badgeId === badgeId)
-                                    return {...student, detailBadge: matchingData }
-                            })      
-            setFinalData([...finalData])
-    } 
-    },[participantBadges])
-
-    useEffect(()=>{
-        if(isSuccessProgress){
-            const progress = userProgress.data
-            const finalDataArray = [...finalData]
-            const finalProgressData = finalDataArray.map((data)=>{
-                                const matchingData = progress.find((p) => p.userId === data.userId && p.subCourseId === subCourseId 
-                                                                              && p.batchId === batchId)
-
-                                if(matchingData){
-                                        return {...data, attendData: matchingData}
-                                }
-                                return {...data, attendData: false}
-            })
-            // console.log(progress)
-            console.log(finalProgressData)
-            // console.log(finalData)
-            
-            setFinalDataProgress([...finalProgressData])
-        }
-    },[finalData])
-
     useEffect(()=>{
         if(isSuccess){
             const link = subCourse.data.subCourseMaterial[0].link
@@ -148,6 +79,47 @@ export default function MeetingPage(){
         
     }, [subCourse, updateSubcourseMaterial])
 
+    const [progressAction, setProgressAction] = useState(false)
+    useEffect(()=>{
+        if(isDone && isClear && isSuccessBadges && isSuccessProgress){
+        const participant = batch.data[0].participant
+        const userBadgesData = userBadges.data
+        const badgeData = allBadges.data
+        const usersProgress = userProgress.data;
+        
+        const userWithBadgesId = participant.map((user)=>{
+                                const matchingData = userBadgesData.filter((userBadge)=>{
+                                    if(userBadge.batchId === batchId && userBadge.subCourseId === subCourseId && userBadge.userId === user.userId){
+                                        return userBadge
+                                    }
+                                })
+
+                    if(matchingData.length > 0 ){
+                            return {...user, badgesId: matchingData.map(data => data.badgeId)}
+                    }
+        })
+        // console.log(userWithBadgesId)
+        const userWithDetailBadges = userWithBadgesId.map((user) =>{
+                                const badgeId = user.badgesId[0]
+                                const matchingData = badgeData.find((data)=> data.badgeId === badgeId)
+                                return {...user, detailBadge: matchingData }
+        })
+
+      
+        const finalData = userWithDetailBadges.map((user) => {
+                                const matchingData = usersProgress.find((u) => u.userId === user.userId && u.subCourseId === subCourseId 
+                                                                                && u.batchId === batchId)
+                                if(matchingData){
+                                    return {...user, attendData: matchingData}
+                                }
+                                return {...user, attendData: false}
+        })
+
+
+        dispatch(setUserWithBadgesProgress(finalData))
+        console.log(finalData)
+    }
+    },[dispatch, batch, userBadges, allBadges, userProgress, progressAction])
 
 
     function handleSubmit(event){
@@ -244,7 +216,7 @@ export default function MeetingPage(){
         event.preventDefault()
         const badgeId = event.target.value
         const userBadgesId = userBadges.data.find((data)=> data.userId == selectUserId)
-        console.log(userBadgesData)
+        // console.log(userBadgesData)
         /* event.preventDefault();
         setSelectBadgeId(event.target.value)
         setSelectUserId(userId)
@@ -269,18 +241,25 @@ export default function MeetingPage(){
         }  */
     }
     
+
+
     function handlePresent(userId){
         const body = {
             batchId,
             subCourseId,
             userId
         }
-        postUserProgress({body});
+        postUserProgress({body}).then((response =>{
+            console.log(response)
+            setProgressAction(!progressAction)
+        }));
         setTimeout(()=>{
             window.location.reload()
-        },3000)
+        },300)
         
     }
+
+
 
     function handleDeletePresent(userId){
         const body = {
@@ -288,10 +267,14 @@ export default function MeetingPage(){
             subCourseId,
             userId
         }
-        deleteUserProgress({userId, batchId, subCourseId})
+        deleteUserProgress({userId, batchId, subCourseId}).then((response =>{
+            console.log(response)
+            setProgressAction(!progressAction)
+        }))
+       
         setTimeout(()=>{
             window.location.reload()
-        },3000)
+        },300)
         
 
     
@@ -338,8 +321,8 @@ export default function MeetingPage(){
             <Card className='flex flex-col px-10 bg-white pb-5 pt-6 items-start '>
                     <h1 className="text-4xl font-semibold mb-8">Peserta</h1>
                     {/* userImage, username, badgeId, badgeName, handleChangeBadge */}
-                    { finalDataProgress &&
-                        finalDataProgress.map((data) => {
+                    { finalDataBadgesWithProgress &&
+                        finalDataBadgesWithProgress.map((data) => {
                             return(
                                     
                                     <SubCourseUserList userId={data.userId} username={data.userFullName} userImage={userPicture} handleChangeBadge={handleChangeBadge}

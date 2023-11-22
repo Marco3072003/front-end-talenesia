@@ -7,30 +7,30 @@ This project was created to fulfill the GoTo Impact Foundation's Generation GIGI
 
 ## Project Features
 
-###User Authentication
+### User Authentication
 
 - Login as a Mentor
 - Login as a Student
 
-###Mentor Features
+### Mentor Features
 
 - Mentor can give points to students
 - Mentor can record student attendance (absensi)
   
-###Student Features
+### Student Features
 
 - Students can view their accumulated points
 - Students can be sorted by points in ascending order
 - Subcourse Structure
 
-###Subcourse Structure
+### Subcourse Structure
 
 -Subcourses consist of live sessions and modules
 
-###Getting Started
+### Getting Started
 - Follow these instructions to set up and run the project locally.
 
-###Prerequisites
+### Prerequisites
 
 Ensure that you have the following tools installed:
 

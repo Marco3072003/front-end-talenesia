@@ -43,6 +43,21 @@ Ensure that you have the following tools installed:
 - Install Dependencies
 - Run App
 
+## Usage
+###User Authentication
+
+- Use the provided login page to authenticate as either a mentor or a student.
+  
+###Mentor Features
+- Award points to students through the dedicated interface.
+- Record student attendance (absensi) during live sessions.
+  
+###Student Features
+- View accumulated points on the student dashboard.
+- Sort and view a list of students in ascending order based on points.
+  
+###Subcourse Structure
+- Explore subcourses containing live sessions and modules for a comprehensive learning experience.
 
 ```bash
 # Clone the repository

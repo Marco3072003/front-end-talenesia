@@ -54,8 +54,14 @@ Ensure that you have the following tools installed:
 - Explore subcourses containing live sessions and modules for a comprehensive learning experience.
 
 ## Account to login the app
-- Login as a Mentor : mentor@gmail.com
-- Login as a Student : pelajar@gmail.com
+
+### Login as a Mentor : 
+- Email: mentor@gmail.com
+- Password: 12345678
+  
+### Login as a Student :
+- Email: pelajar@gmail.com
+- Password: 12345678
 
 ## Installation
 - Clone the repository

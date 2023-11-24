@@ -37,12 +37,6 @@ Ensure that you have the following tools installed:
 - Node.js
 - npm (Node Package Manager)
 
-## Installation
-- Clone the repository
-- Navigate to the project directory
-- Install Dependencies
-- Run App
-
 ## Usage
 ### User Authentication
 
@@ -58,6 +52,16 @@ Ensure that you have the following tools installed:
   
 ### Subcourse Structure
 - Explore subcourses containing live sessions and modules for a comprehensive learning experience.
+
+## Account to login the app
+- Login as a Mentor : mentor@gmail.com
+- Login as a Student : pelajar@gmail.com
+
+## Installation
+- Clone the repository
+- Navigate to the project directory
+- Install Dependencies
+- Run App
 
 ```bash
 # Clone the repository

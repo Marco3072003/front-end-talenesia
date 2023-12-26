@@ -8,36 +8,23 @@ import Container from "../../components/atoms/Container"
 import Card from "../../components/atoms/Card"
 import LeaderList from "../../components/molecules/LeaderList"
 import userPicture from '../../assets/img/user-picture.png'
+import sumPropertyValues from "../../utils/functions/SumPropertyValues";
+
 
 export default function LeaderboardPage(){
-    const navigate = useNavigate()
+    
+
     const dispatch = useDispatch()
-    const isLogin = useSelector((state) => state.auth.isLogin)
 
 
-    /* useEffect(()=>{
-        if(isLogin !== true){
-            console.log(isLogin)
-            navigate('/login')
-        }
-        
-        dispatch(setCredentialsFromLocal())
-    }) */
     const username = localStorage.getItem('my-user-when-entry')
     const token = localStorage.getItem('my-key-to_entry')
+    const role = localStorage.getItem('my-role-key')
     if(token !== null){
-        dispatch(setCredentials({username, token}))
+        dispatch(setCredentials({username, token, role}))
     }
     
-    function sumPropertyValues(arr, propertyName) {
-        return arr.reduce((sum, obj) => {
-          // Check if the property exists in the object
-          if (obj.hasOwnProperty(propertyName)) {
-            return sum + obj[propertyName];
-          }
-          return sum;
-        }, 0);
-      }
+   
     const [totalPoints, setTotalPoints] = useState('');
     const [peringkat, setPeringkat] = useState('')
 
@@ -50,15 +37,12 @@ export default function LeaderboardPage(){
     
     useEffect(()=>{
         if(finish){
-       
-           
             const points =  arrayUserStats.map((userStats)=>{
                 return userStats.detailbadge[0].badgeValue
             })
             const totalPoints = points.reduce((sum,points)=> sum + points, 0);
             setTotalPoints(totalPoints)
            
-            // const points = sumPropertyValues(arrayUserStats, arrayUserStats.detailbadge[0].badgeValue)
         } 
         if(isSuccess){
             participants.sort((a,b)=> sumPropertyValues(a.listBadges,'badgeValue') - sumPropertyValues(a.listBadges,'badgeValue'))
@@ -70,24 +54,17 @@ export default function LeaderboardPage(){
             }
     },[userStats, data])
 
-    
-    
-      //arrange participant according their point
-      
-
-
-
 
     return(
         <Container>
-            <UserStats points={finish && totalPoints} peringkat={isSuccess && peringkat}/>
+            { role === "PELAJAR" && <UserStats points={finish && totalPoints} peringkat={isSuccess && peringkat}/>}
                 <div className="flex flex-col gap-5 mt-10 w-full">
 
-                    <Card className='py-10 px-10  flex flex-col gap-2 bg-white w-full'>
+                    <Card className='py-10 px-3 md:px-10 flex flex-col gap-2 bg-white w-full'>
                         <div className="flex justify-between items-center border-b-4 border-black pb-5 mb-8 w-full px-3">
-                            <h1 className="text-3xl font-semibold">PERINGKAT</h1>
-                            <h1 className="text-3xl font-semibold pr-24">PESERTA</h1>
-                            <h1 className="text-3xl font-semibold pr-5">POINTS</h1>
+                            <h1 className="text-2xl min-[692px]:text-3xl font-semibold">PERINGKAT</h1>
+                            <h1 className="text-2xl min-[692px]:text-3xl min-[692px]:pr-[30px] font-semibold ">PESERTA</h1>
+                            <h1 className="text-2xl min-[692px]:text-3xl font-semibold pr-5">POINTS</h1>
                         </div>
                         {!isFetching && participants.map((participant, index)=>{
                             const username = participant.detailUser.userFullName;
@@ -97,12 +74,6 @@ export default function LeaderboardPage(){
                            return (<LeaderList key={index} position={position} userPicture={userPicture} username={username} points={points} />)
                             
                         })}
-
-
-                        {/* <LeaderList position='1' userPicture={userPicture} username='Fernanda Ramadhan Putra Hartono' points='100'/>
-                        <LeaderList position='2' userPicture={userPicture} username='Fernanda Ramadhan Putra Hartono' points='100'/>
-                        <LeaderList position='3' userPicture={userPicture} username='Fernanda Ramadhan Putra Hartono' points='100'/>
-                        <LeaderList position='4' userPicture={userPicture} username='Fernanda Ramadhan Putra Hartono' points='100'/> */}
                     </Card>
                 </div>    
         </Container>

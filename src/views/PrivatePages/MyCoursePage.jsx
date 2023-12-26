@@ -52,15 +52,6 @@ export default function MyCoursePage(){
 
     },[learningTrack, userProgress])
 
-
-   
-
-    
-    
-
-    
-    
-
     
     const cardStyle ='bg-white px-12 py-4 mb-8'
     return(
@@ -89,13 +80,6 @@ export default function MyCoursePage(){
                                 
                             }
                         
-                        
-                        {/* <CourseCardContent courseName='Judul Materi sesi 1' sesi="1">
-                            <SubCourseContent link="https://www.youtube.com/" judulSubcourse='Pertemuan Sesi 1' tipeSubcourse="Link" imgUrl={meetingImg} opened="18.00" due="20.00"/>
-                            <SubCourseContent link="https://www.youtube.com/" judulSubcourse='Video Sesi 1' tipeSubcourse="Video" imgUrl={pageImage} />
-                            <SubCourseContent link="https://www.youtube.com/" judulSubcourse='Materi Pembelajaran Sesi 1' tipeSubcourse="File" imgUrl={pdfImage} />
-                            <SubCourseContent link="https://www.youtube.com/" judulSubcourse='Tugas Sesi 1' tipeSubcourse="Assignment" imgUrl={submissionImage} />
-                        </CourseCardContent> */}
                 </Card>
             </Container>
             

@@ -1,21 +1,4 @@
-// import LoginForm from '../../components/organisms/LoginForm';
-
-// function LoginPage() {
-//     return (
-//         // <Navbar />
-//         <div className="min-h-screen flex items-center justify-center bg-gray-100">
-//             <div className="bg-white p-8 rounded shadow-md w-96">
-//                 <h1 className="text-2xl font-semibold mb-4 text-center">Login</h1>
-//                 <LoginForm />
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default LoginPage;
-
 import LoginForm from '../../components/organisms/LoginForm';
-
 import loginImage from '../../assets/img/login.png';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +7,6 @@ import {  setCredentialsFromLocal } from '../../features/auth/auth-slice';
 import { useLoginMutation } from '../../features/auth/auth-api-slice';
 import { useLocation } from 'react-router-dom';
 import ReactLoading from 'react-loading';
-
 
 
 
@@ -45,24 +27,14 @@ function Login () {
   
   async function getToken(email, password){
     try{
-        const userData = await login({ email, password}).unwrap()
-        
-        /* if(userData.data === undefined){
-          throw new Error(userData.error.data.error)
-        }
-         */
+        const userData = await login({ email, password}).unwrap()    
         navigate('/dashboard')
         
-
     }catch(err){
-            console.error(err)
-            
+        console.error(err)   
     }
-    
   }
 
- 
-  
  
   return (
     <>

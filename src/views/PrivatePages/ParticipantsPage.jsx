@@ -13,15 +13,6 @@ export default function ParticipantsPage(){
     const dispatch = useDispatch()
     const isLogin = useSelector((state) => state.auth.isLogin)
 
-   /*  useEffect(()=>{
-        if(isLogin !== true){
-            console.log(isLogin)
-            navigate('/login')
-        }
-        
-        dispatch(setCredentialsFromLocal())
-    }) */
-
     const username = localStorage.getItem('my-user-when-entry')
     const token = localStorage.getItem('my-key-to_entry')
     const batchId = localStorage.getItem('batch_id')

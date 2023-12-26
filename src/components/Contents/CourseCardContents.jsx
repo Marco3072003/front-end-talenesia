@@ -24,34 +24,6 @@ export default function CourseCardContent({sesi, children, courseName}){
 
                     <div className="flex flex-col gap-6 mb-5">
                         {children}
-                        
-                        {/* <div className=" border rounded-[10px] border-stone-300 py-5 px-10 flex gap-5">
-                            <div className="bg-gray-300 rounded-lg w-[60px] py-2 flex items-center justify-center"> 
-                                <img className="w-[50px] h-[45px] rounded-lg" src={pageImage} alt="" />
-                            </div>
-                            <div>
-                                <h1>Video</h1>
-                                <h1 className="text-orange-600 font-semibold text-2xl text-['Roboto']">Video Pembelajaran Sesi 1</h1>
-                            </div>
-                        </div>
-                        <div className=" border rounded-[10px] border-stone-300 py-5 px-10 flex gap-5">
-                            <div className="bg-blue-200 rounded-lg w-[60px] py-2 flex items-center justify-center"> 
-                                <img className="w-[50px] h-[45px] rounded-lg" src={pdfImage} alt="" />
-                            </div>
-                            <div>
-                                <h1>File</h1>
-                                <h1 className="text-orange-600 font-semibold text-2xl text-['Roboto']">Link Pertemuan Sesi 1</h1>
-                            </div>
-                        </div>
-                        <div className=" border rounded-[10px] border-stone-300 py-5 px-10 flex gap-5">
-                            <div className="bg-orange-200 rounded-lg w-[60px] py-2 flex items-center justify-center"> 
-                                <img className="w-[50px] h-[45px] rounded-lg" src={submissionImage} alt="" />
-                            </div>
-                            <div>
-                                <h1>Link</h1>
-                                <h1 className="text-orange-600 font-semibold text-2xl text-['Roboto']">Link Pertemuan Sesi 1</h1>
-                            </div>
-                        </div> */}
                     </div>
             </>
 

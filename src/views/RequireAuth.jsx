@@ -5,10 +5,6 @@ export default function RequireAuth() {
     const navigate = useNavigate()
     const token = localStorage.getItem('my-key-to_entry')
     const location = useLocation()
-    // const navigate = useNavigate()
-    /* if(token === null){
-        navigate('/login')
-    } */
     return(
         token 
             ? <Outlet/>

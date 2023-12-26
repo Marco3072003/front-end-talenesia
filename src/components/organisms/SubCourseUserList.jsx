@@ -1,14 +1,8 @@
-import { useSelector } from "react-redux"
 
 
-
-export default function SubCourseUserList({userImage, username, badgeId,  handleChangeBadge, userId, handlePresent, handleDeletePresent, attendData, isOpenAttend, 
-                                            setIsOpenAttend}){
-        // console.log(attendData)
-        /* const finalDataBadgesWithProgress = useSelector((state)=> state.detailUser.userWithBadgesProgress) 
-
-        console.log(finalDataBadgesWithProgress) */
-        // console.log(userId)
+export default function SubCourseUserList({userImage, username, badgeId,  handleChangeBadge, userId, handlePresent, 
+                                           handleDeletePresent, attendData, isOpenAttend, 
+                                           setIsOpenAttend}){
     if(!attendData){
             setIsOpenAttend(true)
 

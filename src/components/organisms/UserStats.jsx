@@ -6,7 +6,6 @@ import { useUserBadgesQuery } from "../../features/user/user-api-slice"
 export default function UserStats({points, peringkat}){
     const username = useSelector((state)=> state.auth.username)
     //point, peringkat, username
-    
     const listBadges= []
     return(
                 <div className="w-full bg-white py-5 px-14 flex justify-between items-center">

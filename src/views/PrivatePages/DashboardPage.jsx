@@ -55,7 +55,6 @@ export default function DashboardPage(){
             const totalPoints = points.reduce((sum,points)=> sum + points, 0);
             setTotalPoints(totalPoints)
            
-            // const points = sumPropertyValues(arrayUserStats, arrayUserStats.detailbadge[0].badgeValue)
         } 
         if(isFinish){
             participants.sort((a,b)=> sumPropertyValues(a.listBadges,'badgeValue') - sumPropertyValues(a.listBadges,'badgeValue'))
@@ -82,8 +81,6 @@ export default function DashboardPage(){
         
     },[userLibraries,  dispatch])
 
-   
-   
 
     return(
             <Container>

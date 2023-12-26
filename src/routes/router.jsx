@@ -11,61 +11,6 @@ import LeaderboardPage from "../views/PrivatePages/LeaderboardPage";
 import MeetingPage from "../views/PrivatePages/MentorPage/MeetingPage";
 import RequireAuth from "../views/RequireAuth";
 
-
-
-
-
-
-/* const router = createBrowserRouter([
-            {   
-              
-                    path:'/',
-                    element: <Root />,
-                    children: [
-                        {
-                            path: '/',
-                            element: <LandingPage />,
-                        },
-                        {
-                            path: '/login',
-                            element: <LoginPage />,
-                            
-                        },
-                        {
-                            path: '/course',
-                            element: <CoursePage/>
-                        },
-                        {
-                            path: '/teacher',
-                            element: <TeacherPage/>
-                        },
-                        {
-                            path: '/dashboard',
-                            element: <DashboardPage />
-                        },
-                        {
-                            path: '/mycourse',
-                            element: <MyCoursePage/>
-                        },
-                        {
-                            path: '/participants',
-                            element: <ParticipantsPage />
-                        },
-                        {
-                            path: '/leaderboard',
-                            element: <LeaderboardPage />
-                        },
-                        {
-                            path:'/meeting/:courseId/:subCourseId',
-                            element: <MeetingPage/>
-                        }
-                    ]
-                
-                
-            },
-
-]) */
-
 const router = createBrowserRouter([
     {   
       

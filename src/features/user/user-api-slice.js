@@ -1,6 +1,7 @@
 import { apiSlice } from "../../app/api/api-slice";
 
 export const userApiSlice = apiSlice.injectEndpoints({
+    
     endpoints : builder => ({
         userLibraries: builder.query({
             query: ()=>{
@@ -20,7 +21,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
         getBatch: builder.query({
             query: ({batchId})=>{
                 return `/batches/${batchId}`
-            }
+            },
+            providesTags: ['participant']
         }),
         getMyCourse: builder.query({
             query: ({learningTrackId}) =>{
@@ -42,20 +44,23 @@ export const userApiSlice = apiSlice.injectEndpoints({
         getAllUserBadges: builder.query({
             query: () => {
                 return '/userbadges'
-            }
+            },
+            providesTags: ['participant']
         }),
         getAllBadges: builder.query({
             query: () =>{
                 return '/badges'
-            }
+            },
+            providesTags: ['participant']
         }),
         patchBadgesById: builder.mutation({
             query: ({userBadgeId , body}) => ({
                 url: `/userbadges/${userBadgeId}`,
                 method:'PATCH',
-                body: {...body}
-               
-            })
+                body: {...body},
+            }),
+            invalidatesTags: ['participant']
+
         }),
         postBadgesById: builder.mutation({
             query: ({userBadgeId , body}) => ({
@@ -70,21 +75,21 @@ export const userApiSlice = apiSlice.injectEndpoints({
                 url: `/userprogress`,
                 method: 'POST',
                 body: {...body}
-            })
+            }),
+            invalidatesTags: ['participant']
         }), 
         getUserProgress: builder.query({
             query: ({batchId, subCourseId})=> {
                 return `/userprogress/filter?batchId=${batchId}&subCourseId=${subCourseId}`
-                // localhost:5000/userprogress/filter?batchId=UjSqxfyed7NP&subCourseId=nxpiqqindt_I
-                
-            
-            }
+            },
+            providesTags: ['participant']
         }),
         deleteUserProgress: builder.mutation({
             query: ({userId, batchId, subCourseId}) => ({
                 url: `/userprogress/filter?userId=${userId}&batchId=${batchId}&subCourseId=${subCourseId}`,
                 method: 'DELETE',
-            })
+            }),
+            invalidatesTags: ['participant']
         }),
         getUserProgressByBatch: builder.query({
             query: ({batchId})=>{

@@ -8,7 +8,7 @@ import Container from "../../components/atoms/Container"
 import Card from "../../components/atoms/Card"
 import LeaderList from "../../components/molecules/LeaderList"
 import userPicture from '../../assets/img/user-picture.png'
-import sumPropertyValues from "../../utils/functions/SumPropertyValues";
+import sumPropertyValues from "../../utils/functions/sumPropertyValues";
 
 
 export default function LeaderboardPage(){

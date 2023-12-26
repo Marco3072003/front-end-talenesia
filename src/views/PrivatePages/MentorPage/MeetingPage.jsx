@@ -8,6 +8,7 @@ import meetingImage from "../../../assets/img/meeting.png";
 import FormInput from "../../../components/molecules/FormInput";
 import Button from "../../../components/atoms/Button";
 import userImage from "../../../assets/img/user-picture.png";
+
 import {
   setIsOpenUpdate,
   setIsSubmit,
@@ -94,7 +95,7 @@ export default function MeetingPage() {
   const [postUserProgress, { isLoading: loadingProgress }] =
     usePostUserProgressMutation();
   const [deleteUserProgress, { isLoadingDelete }] = useDeleteUserProgressMutation();
-  
+
   const finalDataBadgesWithProgress = useSelector(
     (state) => state.detailUser.userWithBadgesProgress
   );

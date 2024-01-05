@@ -8,12 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCredentials, setCredentialsFromLocal } from "../../features/auth/auth-slice";
 
 export default function TeacherPage(){
-    const TOKEN_KEY = useSelector((state) => state.auth.TOKEN_KEY)
-    const USER_KEY = useSelector((state) => state.auth.USER_KEY)
-    const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(setCredentialsFromLocal())
-      })
+    
     return(
         <>
             <Container className='flex flex-col items-center'>

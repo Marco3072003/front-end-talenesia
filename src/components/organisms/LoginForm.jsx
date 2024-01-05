@@ -29,7 +29,7 @@ export default function LoginForm({getToken}) {
           placeholder="Enter your email"
           name="email"
           value={email}
-          onChange={e => setEmail (e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           classNameInput='w-full bg-transparent border-solid border-2 border-sky-900 rounded-lg p-2'
         />
         <FormInput
@@ -38,7 +38,7 @@ export default function LoginForm({getToken}) {
           placeholder="Enter your password"
           name="password"
           value={password}
-          onChange={e => setPassword (e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           classNameInput='w-full bg-transparent border-solid border-2 border-sky-900 rounded-lg p-2'
         />
         <Button

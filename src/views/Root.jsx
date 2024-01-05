@@ -53,7 +53,7 @@ export default function PublicRoot(){
             </SidebarTemplate>
 
             <Navbar shadowHeader="shadow-md" />
-
+                
             <Outlet />
         </>
     )
